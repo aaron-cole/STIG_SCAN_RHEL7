@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-72269"
 GrpTitle="SRG-OS-000355-GPOS-00143"
-RuleID="SV-86893r4_rule"
+RuleID="SV-86893r5_rule"
 STIGID="RHEL-07-040500"
 Results="./Results/$GrpID"
 
@@ -24,8 +24,11 @@ echo $STIGID >> $Results
 ###Check###
 
 echo "NTP Status - $(systemctl status ntpd 2>> $Results)" >> $Results
+echo "CHRONYD Status - $(systemctl status chronyd 2>> $Results)" >> $Results
 
-if [ "$(systemctl is-enabled ntpd)" == "enabled" ] && [ "$(systemctl is-active ntpd)" == "active" ]; then
+if [ "$(systemctl is-enabled chronyd)" == "enabled" ] && [ "$(systemctl is-active chronyd)" == "active" ]; then
+ echo "Pass" >> $Results
+elif [ "$(systemctl is-enabled ntpd)" == "enabled" ] && [ "$(systemctl is-active ntpd)" == "active" ]; then
  grep maxpoll /etc/ntp.conf | grep -v "#" >> $Results
  if [[ "$(grep "maxpoll 17" /etc/ntp.conf | grep -v "#" )" ]] || [[ ! "$(grep "maxpoll " /etc/ntp.conf | grep -v "#" )" ]]; then
   echo "Setting not set or not defined" >> $Results
