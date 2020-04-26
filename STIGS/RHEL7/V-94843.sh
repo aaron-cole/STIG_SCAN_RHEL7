@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the GNOME graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.
+#A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.
 
 #STIG Identification
 GrpID="V-94843"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-104673r1_rule"
+RuleID="SV-104673r2_rule"
 STIGID="RHEL-07-020231"
 Results="./Results/$GrpID"
 

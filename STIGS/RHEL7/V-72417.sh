@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-72417"
 GrpTitle="SRG-OS-000375-GPOS-00160"
-RuleID="SV-87041r4_rule"
+RuleID="SV-87041r5_rule"
 STIGID="RHEL-07-041001"
 Results="./Results/$GrpID"
 
@@ -24,7 +24,7 @@ echo $STIGID >> $Results
 ###Check###
 scorecheck=0
 
-for package in esc pam_pkcs11 ; do
+for package in pam_pkcs11 ; do
  if rpm -q $package >> $Results; then
   echo "" >> /dev/null
  else

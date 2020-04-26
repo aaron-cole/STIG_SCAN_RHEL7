@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-72081"
 GrpTitle="SRG-OS-000046-GPOS-00022"
-RuleID="SV-86705r4_rule"
+RuleID="SV-86705r5_rule"
 STIGID="RHEL-07-030010"
 Results="./Results/$GrpID"
 
@@ -28,8 +28,8 @@ if auditctl -s | grep "^failure 2" >> $Results; then
 elif auditctl -s | grep "^failure 1" >> $Results; then
  if grep "^.*@" /etc/rsyslog.conf | grep -v "#" >> $Results; then 
   echo "Pass" >> $Results
- elif ps -ef | grep "patrol" >> $Results; then
-  echo "Patrol is monitoring Log" >> $Results
+ elif ps -ef | grep "snmp" >> $Results; then
+  echo "SNMP is monitoring partition" >> $Results
   echo "Pass" >> $Results
  else
   echo "Fail" >> $Results

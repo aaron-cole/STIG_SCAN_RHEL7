@@ -28,7 +28,8 @@ if rpm -q ISecTP >> $Results; then
  if [ "$(systemctl is-enabled isectpd 2>>/dev/null)" == "enabled" ] && [ "$(systemctl is-active isectpd 2>>/dev/null)" == "active" ]; then
   /opt/isec/ens/threatprevention/bin/isecav --version >> $Results
   echo "Pass" >> $Results
- else 
+ else
+  echo "McAfee ENSL Installed but not running" >> $Results  
   echo "Fail" >> $Results
  fi
 else

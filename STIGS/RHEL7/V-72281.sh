@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-72281"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-86905r2_rule"
+RuleID="SV-86905r3_rule"
 STIGID="RHEL-07-040600"
 Results="./Results/$GrpID"
 
@@ -27,7 +27,14 @@ if grep "^hosts" /etc/nsswitch.conf | grep dns >> $Results; then
  grep "^nameserver " /etc/resolv.conf >> $Results
  if [ "$(grep "^nameserver " /etc/resolv.conf | wc -l)" -ge 2 ]; then
   echo "2 or more DNS servers are defined" >> $Results
-  echo "Pass" >> $Results
+  lsattr /etc/resolv.conf >> $Results
+  if lsattr /etc/resolv.conf | awk '{print $1}' | grep "i" >> /dev/null; then
+   echo "/etc/resolv.conf is immutable" >> $Results
+   echo "Pass" >> $Results
+  else
+   echo "/etc/resolv.conf is mutable" >> $Results
+   echo "Fail" >> $Results
+  fi
  else 
   echo "Less than 2 DNS servers are defined" >> $Results
   echo "Fail" >> $Results
