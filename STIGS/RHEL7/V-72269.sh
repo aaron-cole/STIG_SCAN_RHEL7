@@ -26,9 +26,9 @@ echo $STIGID >> $Results
 echo "NTP Status - $(systemctl status ntpd 2>> $Results)" >> $Results
 echo "CHRONYD Status - $(systemctl status chronyd 2>> $Results)" >> $Results
 
-if [ "$(systemctl is-enabled chronyd)" == "enabled" ] && [ "$(systemctl is-active chronyd)" == "active" ]; then
+if [ "$(systemctl is-enabled chronyd 2>/dev/null)" == "enabled" ] && [ "$(systemctl is-active chronyd 2>/dev/null)" == "active" ]; then
  echo "Pass" >> $Results
-elif [ "$(systemctl is-enabled ntpd)" == "enabled" ] && [ "$(systemctl is-active ntpd)" == "active" ]; then
+elif [ "$(systemctl is-enabled ntpd 2>/dev/null)" == "enabled" ] && [ "$(systemctl is-active ntpd 2>/dev/null)" == "active" ]; then
  grep maxpoll /etc/ntp.conf | grep -v "#" >> $Results
  if [[ "$(grep "maxpoll 17" /etc/ntp.conf | grep -v "#" )" ]] || [[ ! "$(grep "maxpoll " /etc/ntp.conf | grep -v "#" )" ]]; then
   echo "Setting not set or not defined" >> $Results
