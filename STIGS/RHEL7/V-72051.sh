@@ -23,9 +23,11 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep "^cron\.\*" /etc/rsyslog.conf /etc/rsyslog.d/*.conf >> $Results; then
+if [ "$(grep "^cron\.\*" /etc/rsyslog.conf)" ] || [ "$(grep "^cron\.\*" /etc/rsyslog.d/*.conf)" ]; then
+ grep "^cron\.\*" /etc/rsyslog.conf /etc/rsyslog.d/*.conf >> $Results 2>>/dev/null
  echo "Pass" >> $Results
-elif grep "^\*\.\*" /etc/rsyslog.conf /etc/rsyslog.d/*.conf >> $Results; then
+elif [ "$(grep "^\*\.\*" /etc/rsyslog.conf)" ] || [ "$(grep "^\*\.\*" /etc/rsyslog.d/*.conf)" ]; then
+ grep "^\*\.\*" /etc/rsyslog.conf /etc/rsyslog.d/*.conf >> $Results 2>>/dev/null
  echo "Pass" >> $Results
 else
  echo "cron logging not found" >> $Results 
