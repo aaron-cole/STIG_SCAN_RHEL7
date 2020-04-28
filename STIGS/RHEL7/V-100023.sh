@@ -33,6 +33,7 @@ if rpm -q gnome-desktop3 >> $Results; then
   else
    echo "automount Setting defined and NOT set" >> $Results
    ((scorecheck+=1))
+  fi
  elif [ "$(grep -r "automount=" /etc/dconf/db/local.d/* | grep -v "^#" | wc -l )" -eq 0 ]; then
   echo "automount Setting not defined" >> $Results
  ((scorecheck+=1))
@@ -47,6 +48,7 @@ if rpm -q gnome-desktop3 >> $Results; then
   else
    echo "automount-open Setting defined and NOT set" >> $Results
    ((scorecheck+=1))
+  fi
  elif [ "$(grep -r "automount-open=" /etc/dconf/db/local.d/* | grep -v "^#" | wc -l )" -eq 0 ]; then
   echo "automount-open Setting not defined" >> $Results
  ((scorecheck+=1))
@@ -61,6 +63,7 @@ if rpm -q gnome-desktop3 >> $Results; then
   else
    echo "autorun-never Setting defined and NOT set" >> $Results
    ((scorecheck+=1))
+  fi
  elif [ "$(grep -r "autorun-never=" /etc/dconf/db/local.d/* | grep -v "^#" | wc -l )" -eq 0 ]; then
   echo "autorun-never Setting not defined" >> $Results
  ((scorecheck+=1))
