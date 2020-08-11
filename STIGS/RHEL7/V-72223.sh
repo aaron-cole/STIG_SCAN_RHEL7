@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-72223"
 GrpTitle="SRG-OS-000163-GPOS-00072"
-RuleID="SV-86847r4_rule"
+RuleID="SV-86847r5_rule"
 STIGID="RHEL-07-040160"
 Results="./Results/$GrpID"
 
@@ -28,9 +28,9 @@ justneedone=0
 if grep "TMOUT" /etc/profile.d/* | grep -v "^#"  >> /dev/null; then
  chkfiles="$(grep "TMOUT" /etc/profile.d/* | grep -v "^#" | cut -f 1 -d ":" | sort | uniq)"
  for chkfile in $chkfiles; do
-  if grep "TMOUT=[0-600]" $chkfile >> $Results; then
-   if grep "readonly TMOUT" $chkfile >> $Results; then
-    if grep "export TMOUT" $chkfile >> $Results; then
+  if grep "TMOUT=" $chkfile | grep -v "^#" | awk -F= '$2 <=900' >> $Results; then
+   if grep "readonly TMOUT" $chkfile | grep -v "^#" >> $Results; then
+    if grep "export TMOUT" $chkfile | grep -v "^#" >> $Results; then
 	 justneedone=1
 	 break
     fi
@@ -43,6 +43,6 @@ if grep "TMOUT" /etc/profile.d/* | grep -v "^#"  >> /dev/null; then
   echo "Fail" >> $Results
  fi
 else
- echo "No TMOUT found in any script located in /etc/profile.d/" >> $Results
+ echo "TMOUT setting not properly deployed in /etc/profile.d/" >> $Results
  echo "Fail" >> $Results
 fi 

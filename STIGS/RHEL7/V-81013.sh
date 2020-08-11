@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#The "noexec" mount option causes the system to not execute binary files. This option must be used for mounting any file system not containing approved binary files as they may be incompatible. Executing files from untrusted file systems increases the opportunity for unprivileged users to attain unauthorized administrative access.
+#
 
 #STIG Identification
 GrpID="V-81013"
 GrpTitle="SRG-OS-000368-GPOS-00154"
-RuleID="SV-95725r2_rule"
+RuleID="SV-95725r3_rule"
 STIGID="RHEL-07-021024"
 Results="./Results/$GrpID"
 
@@ -23,14 +23,14 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep "/dev/shm" /etc/fstab | grep -v "^#" | grep noexec >> $Results; then
- if mount | grep "on /dev/shm " | grep noexec >> $Results; then
+if grep "/dev/shm" /etc/fstab | grep -v "^#" | grep noexec | grep nosuid | grep nodev >> $Results; then
+ if mount | grep "on /dev/shm " | grep noexec | grep nosuid | grep nodev >> $Results; then
   echo "Pass" >> $Results
  else
-  echo "/dev/shm is not mounted with the noexec option" >> $Results
+  echo "/dev/shm is not mounted with the required options" >> $Results
   echo "Fail" >> $Results
  fi
 else
- echo "/dev/shm is NOT present with the noexec option in /etc/fstab" >> $Results
+ echo "/dev/shm is NOT present with the required options in /etc/fstab" >> $Results
  echo "Fail" >> $Results
 fi

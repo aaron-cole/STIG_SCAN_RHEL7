@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+#
 
 #STIG Identification
 GrpID="V-72185"
 GrpTitle="SRG-OS-000471-GPOS-00215"
-RuleID="SV-86809r4_rule"
+RuleID="SV-86809r5_rule"
 STIGID="RHEL-07-030810"
 Results="./Results/$GrpID"
 

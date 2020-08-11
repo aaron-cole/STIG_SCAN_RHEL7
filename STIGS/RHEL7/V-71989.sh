@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-71989"
 GrpTitle="SRG-OS-000445-GPOS-00199"
-RuleID="SV-86613r3_rule"
+RuleID="SV-86613r4_rule"
 STIGID="RHEL-07-020210"
 Results="./Results/$GrpID"
 
@@ -23,15 +23,9 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ -e /opt/isec/ens/threatprevention/bin/isecav ]; then
- echo "McAfee Endpoint Security for Linux Threat Prevention is installed and is a HIPS" >> $Results
- /opt/isec/ens/threatprevention/bin/isecav --version >> $Results
- echo "NA" >> $Results
-else
- getenforce >> $Results
- if [ "$(getenforce)" == "Enforcing" ]; then
-  echo "Pass" >> $Results
- else 
-  echo "Fail" >> $Results
- fi
+getenforce >> $Results
+if [ "$(getenforce)" == "Enforcing" ]; then
+ echo "Pass" >> $Results
+else 
+ echo "Fail" >> $Results
 fi

@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#If a local interactive user has a home directory defined that does not exist, the user may be given access to the / directory as the current working directory upon logon. This could create a Denial of Service because the user would not be able to access their logon configuration files, and it may give them visibility to system files they normally would not be able to access.
+#
 
 #STIG Identification
 GrpID="V-72015"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-86639r2_rule"
+RuleID="SV-86639r3_rule"
 STIGID="RHEL-07-020620"
 Results="./Results/$GrpID"
 

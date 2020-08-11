@@ -1,13 +1,13 @@
 #!/bin/sh
 ##Automatically defined items##
 
-#Vulnerability Discussion
+#Vulnerability Discussion 
 #
 
 #STIG Identification
 GrpID="V-72117"
 GrpTitle="SRG-OS-000458-GPOS-00203"
-RuleID="SV-86741r5_rule"
+RuleID="SV-86741r6_rule"
 STIGID="RHEL-07-030470"
 Results="./Results/$GrpID"
 

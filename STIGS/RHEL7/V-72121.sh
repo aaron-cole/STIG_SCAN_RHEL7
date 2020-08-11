@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#
+# 
 
 #STIG Identification
 GrpID="V-72121"
 GrpTitle="SRG-OS-000458-GPOS-00203"
-RuleID="SV-86745r5_rule"
+RuleID="SV-86745r6_rule"
 STIGID="RHEL-07-030490"
 Results="./Results/$GrpID"
 
