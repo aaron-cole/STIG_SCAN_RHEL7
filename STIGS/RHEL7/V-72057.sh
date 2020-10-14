@@ -25,7 +25,9 @@ echo $STIGID >> $Results
 
 echo "kdump status- $(systemctl status kdump)" >> $Results
 
-if [ "$(systemctl is-enabled kdump)" == "disabled" ] && [ "$(systemctl is-active kdump)" == "unknown" ]; then
+if [ "$(systemctl is-enabled kdump)" == "disabled" ] && [ "$(systemctl is-active kdump)" == "inactive" ]; then
+ echo "Pass" >> $Results
+elif [ "$(systemctl is-enabled kdump)" == "disabled" ] && [ "$(systemctl is-active kdump)" == "unknown" ]; then
  echo "Pass" >> $Results
 else 
  echo "Fail" >> $Results
