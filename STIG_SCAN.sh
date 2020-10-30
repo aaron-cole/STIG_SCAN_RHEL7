@@ -20,11 +20,12 @@ TempDIR="./Results"
 ReportsDIR="./Reports"
 STIGDIR="./STIGS"
 RunTime="$(date +%F_%s)"
+mydate="$(date +%F)"
 servername="$(hostname)"
 rfoldname="$servername-$RunTime"
 CRDIR="$ReportsDIR/$rfoldname"
 xccdffile="$rfoldname.xccdf.xml"
-cklfile="$CRDIR/$servername.ckl"
+cklfile="$CRDIR/$servername-RHEL7_V3R1_$mydate.ckl"
 TempCKLSTIG="$TempDIR/CKLprocessing"
 starttime=$(date)
 
