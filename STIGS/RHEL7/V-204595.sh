@@ -23,8 +23,8 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ "$(tail -n -1 ./Results/V-72067)" == "Fail" ]; then
- echo "V-72067 fails" >> $Results
+if [ "$(tail -n -1 ./Results/V-204497)" == "Fail" ]; then
+ echo "V-204497 fails" >> $Results
  echo "Fail" >> $Results
 elif [ -f /etc/ssh/sshd_config ] && [ "$(grep "^MACs" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
  awk -v opf="$Results" '/^MACs/ {
