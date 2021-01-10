@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if mount | grep "on /var " >> $Results; then
+if findmnt /var >> $Results; then
  echo "Pass" >> $Results
 else
  echo "/var not on seperate partition" >> $Results 

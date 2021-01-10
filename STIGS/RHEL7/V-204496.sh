@@ -24,7 +24,6 @@ echo $STIGID >> $Results
 ###Check###
 
 if findmnt /tmp >> $Results; then
-#if mount | grep "on /tmp " >> $Results; then
  echo "Pass" >> $Results
 elif [ "$(systemctl is-enabled tmp.mount)" == "enabled" ]; then
  echo "Pass" >> $Results
