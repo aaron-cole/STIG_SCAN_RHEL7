@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-204578"
 GrpTitle="SRG-OS-000033-GPOS-00014"
-RuleID="SV-204578r505924_rule"
+RuleID="SV-204578r603843_rule"
 STIGID="RHEL-07-040110"
 Results="./Results/$GrpID"
 
@@ -23,12 +23,20 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ "$(tail -n -1 ./Results/V-72067)" == "Fail" ]; then
- echo "V-72067 fails" >> $Results
+if [ "$(tail -n -1 ./Results/V-204497)" == "Fail" ]; then
+ echo "V-204497 fails" >> $Results
  echo "Fail" >> $Results
-elif grep Ciphers /etc/ssh/sshd_config | egrep -vi "#|arcfour|cbc|blowfish|cast|gcm|3des|chacha" | egrep "aes128|aes192|aes256" >> $Results ; then 
- echo "Pass" >> $Results
+elif [ -f /etc/ssh/sshd_config ] && [ "$(grep "^Ciphers" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
+ awk -v opf="$Results" '/^Ciphers/ {
+	if($2 == "aes256-ctr,aes192-ctr,aes128-ctr") {
+	 print $0 >> opf
+	 print "Pass" >> opf
+	} else {
+	 print $0 >> opf
+	 print "Fail" >> opf
+	}
+}' /etc/ssh/sshd_config 
 else
- grep Ciphers /etc/ssh/sshd_config >> $Results 
+ grep "^Ciphers" /etc/ssh/sshd_config >> $Results 
  echo "Fail" >> $Results
 fi

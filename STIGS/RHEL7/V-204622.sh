@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#Open X displays allow an attacker to capture keystrokes and execute commands remotely.
+#
 
 #STIG Identification
 GrpID="V-204622"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-204622r505924_rule"
+RuleID="SV-204622r603849_rule"
 STIGID="RHEL-07-040710"
 Results="./Results/$GrpID"
 
@@ -25,7 +25,7 @@ echo $STIGID >> $Results
 
 if [ -f /etc/ssh/sshd_config ] && [ "$(grep "^X11Forwarding" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
 awk -v opf="$Results" '/^X11Forwarding/ {
-	if($2 == "yes") {
+	if($2 == "no") {
 	 print $0 >> opf
 	 print "Pass" >> opf
 	} else {

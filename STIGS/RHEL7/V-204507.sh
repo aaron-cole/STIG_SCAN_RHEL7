@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+#
 
 #STIG Identification
 GrpID="V-204507"
 GrpTitle="SRG-OS-000342-GPOS-00133"
-RuleID="SV-204507r505924_rule"
+RuleID="SV-204507r603261_rule"
 STIGID="RHEL-07-030210"
 Results="./Results/$GrpID"
 

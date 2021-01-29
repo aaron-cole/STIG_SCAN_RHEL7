@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-204433"
 GrpTitle="SRG-OS-000480-GPOS-00229"
-RuleID="SV-204433r505924_rule"
+RuleID="SV-204433r603261_rule"
 STIGID="RHEL-07-010450"
 Results="./Results/$GrpID"
 
