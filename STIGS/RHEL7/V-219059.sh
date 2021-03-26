@@ -70,14 +70,14 @@ if rpm -q gnome-desktop3 >> $Results; then
  else
   echo "More than 1 autorun-never configuration" >> $Results
   ((scorecheck+=1))
- fi 
+ fi
+ if [ "$scorecheck" != 0 ]; then
+  echo "Fail" >> $Results 
+ else 
+  echo "Pass" >> $Results
+ fi
 else
  echo "GNOME is not installed" >> $Results
  echo "NA" >> $Results
 fi
-		
-if [ "$scorecheck" != 0 ]; then
- echo "Fail" >> $Results 
-else 
- echo "Pass" >> $Results
-fi
+
