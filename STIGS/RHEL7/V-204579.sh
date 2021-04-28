@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-204579"
 GrpTitle="SRG-OS-000163-GPOS-00072"
-RuleID="SV-204579r603261_rule"
+RuleID="SV-204579r646844_rule"
 STIGID="RHEL-07-040160"
 Results="./Results/$GrpID"
 
@@ -34,6 +34,11 @@ if grep "TMOUT" /etc/profile.d/* | grep -v "^#"  >> /dev/null; then
 	 justneedone=1
 	 break
     fi
+   else
+    if grep "declare.*xr " $chkfile | grep -v "^#" >> $Results; then
+	 justneedone=1
+	 break
+	fi
    fi
   fi
  done
