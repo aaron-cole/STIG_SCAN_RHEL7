@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-204513"
 GrpTitle="SRG-OS-000343-GPOS-00134"
-RuleID="SV-204513r603261_rule"
+RuleID="SV-204513r744112_rule"
 STIGID="RHEL-07-030330"
 Results="./Results/$GrpID"
 
@@ -39,7 +39,17 @@ if rpm -q bc >> /dev/null; then
   echo "Should be configured to $MBspace" >> $Results
   echo "Fail" >> $Results
  fi
+elif [ -e /etc/audit/auditd.conf ] && [ "$(grep "^space_left =" /etc/audit/auditd.conf | wc -l)" -eq 1 ]; then 
+awk -v opf="$Results" '/^space_left = / {
+	if($3 >= "25%") {
+	 print $0 >> opf
+	 print "Pass" >> opf
+	} else {
+	 print $0 >> opf
+	 print "Fail" >> opf
+	}
+}' /etc/audit/auditd.conf
 else
- echo "bc is not installed, this check can not be completed" >> $Results
+ echo "Setting not set correctly" >> $Results
  echo "Fail" >> $Results
 fi

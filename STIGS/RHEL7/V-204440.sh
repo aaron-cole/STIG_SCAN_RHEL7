@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#If the system does not require valid root authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.
+#If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.
 
 #STIG Identification
 GrpID="V-204440"
 GrpTitle="SRG-OS-000080-GPOS-00048"
-RuleID="SV-204440r603261_rule"
+RuleID="SV-204440r744098_rule"
 STIGID="RHEL-07-010491"
 Results="./Results/$GrpID"
 
@@ -31,13 +31,7 @@ elif [ "$(rpm -qi redhat-release-server | grep "^Version" | awk '{print $3}' | c
  echo "NA" >> $Results
 elif [ -e /boot/efi/EFI/redhat/user.cfg ] && [ "$(grep "^GRUB2_PASSWORD=grub.pbkdf2.sha512" /boot/efi/EFI/redhat/user.cfg)" ]; then
  echo "Grub Password is defined - $(grep "^GRUB2_PASSWORD=grub.pbkdf2.sha512" /boot/efi/EFI/redhat/user.cfg)" >> $Results
- if grep 'set superusers="root"' /boot/efi/EFI/redhat/grub.cfg >> $Results; then
-  echo "superusers set as root" >> $Results
-  echo "Pass" >> $Results
- else
-  echo "superusers not set as root" >> $Results
-  echo "Fail" >> $Results
- fi
+ echo "Pass" >> $Results
 else 
  echo "Fail" >> $Results
 fi

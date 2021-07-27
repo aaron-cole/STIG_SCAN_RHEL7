@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-204458"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-204458r603261_rule"
+RuleID="SV-204458r744100_rule"
 STIGID="RHEL-07-020250"
 Results="./Results/$GrpID"
 
@@ -25,7 +25,7 @@ echo $STIGID >> $Results
 
 if [ -e /etc/redhat-release ] && [ "$(wc -l < /etc/redhat-release)" -eq 1 ]; then 
 awk -v opf="$Results" '/^Red Hat Enterprise Linux Server / {
-	if($7 >= 7.6) {
+	if($7 >= 7.7) {
 	 print $0 >> opf
 	 print "Pass" >> opf
 	} else {

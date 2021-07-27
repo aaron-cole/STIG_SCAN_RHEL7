@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#Adding host-based intrusion detection tools can provide the capability to automatically take actions in response to malicious behavior, which can provide additional agility in reacting to network threats. These tools also often include a reporting capability to provide network awareness of the system, which may not otherwise exist in an organization's systems management regime.
+#Adding endpoint security tools can provide the capability to automatically take actions in response to malicious behavior, which can provide additional agility in reacting to network threats. These tools also often include a reporting capability to provide network awareness of the system, which may not otherwise exist in an organization's systems management regime.
 
 #STIG Identification
 GrpID="V-214800"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-214800r603261_rule"
+RuleID="SV-214800r754751_rule"
 STIGID="RHEL-07-020019"
 Results="./Results/$GrpID"
 
@@ -22,18 +22,11 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-if [ "$(rpm -qa | grep MFEhiplsm)" ] && [ "$(ps -ef | grep -i "hipclient")" ]; then
- echo "Running Status - $(service hipclient status 2>> $Results)" >> $Results
- echo "Startup Status - $(chkconfig hipclient --list 2>> $Results)" >> $Results
- echo "Pass" >> $Results
-elif [ -e /opt/isec/ens/threatprevention/bin/isecav ]; then
- echo "McAfee Endpoint Security for Linux Threat Prevention is installed and is an approved HIPS" >> $Results
- /opt/isec/ens/threatprevention/bin/isecav --version >> $Results
- echo "Pass" >> $Results
-elif [ "$(getenforce)" == "Enforcing" ]; then
- echo "Selinux Status - $(getenforce)" >> $Results
+if [ "$(rpm -qa | grep McAfeeTP)" ] && [ "$(ps -ef | grep -i "mfetpd")" ]; then
+ rpm -qa | grep McAfeeTP >> $Results
+ ps -ef | grep -i "mfetpd" >> $Results
  echo "Pass" >> $Results
 else
- echo "No Approved HIPS Found" >> $Results
+ echo "McAfee ENSLTP not installed and/or running" >> $Results
  echo "Fail" >> $Results
 fi
