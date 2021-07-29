@@ -29,7 +29,7 @@ else
  if egrep -r "^[^#]*\!authenticate" /etc/sudoers.d >> $Results; then 
   echo "Fail" >> $Results
  else 
-  echo "Nothing Found in /etc/sudoers.d/ files" >> $Results
+  echo "Nothing Found in /etc/sudoers or /etc/sudoers.d/ files" >> $Results
   echo "Pass" >> $Results 
  fi 
 fi

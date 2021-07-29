@@ -22,7 +22,7 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-if [ "$(rpm -qa | grep McAfeeTP)" ] && [ "$(ps -ef | grep -i "mfetpd")" ]; then
+if [ "$(rpm -qa | grep McAfeeTP)" ] && [ "$(ps -ef | grep -i "mfetpd" | grep -v grep)" ]; then
  rpm -qa | grep McAfeeTP >> $Results
  ps -ef | grep -i "mfetpd" >> $Results
  echo "Pass" >> $Results
