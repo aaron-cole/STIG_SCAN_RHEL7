@@ -25,7 +25,7 @@ servername="$(hostname)"
 rfoldname="$servername-$RunTime"
 CRDIR="$ReportsDIR/$rfoldname"
 xccdffile="$rfoldname.xccdf.xml"
-cklfile="$CRDIR/$servername-RHEL7_V3R4_$mydate.ckl"
+cklfile="$CRDIR/$servername-RHEL7_V3R5_$mydate.ckl"
 TempCKLSTIG="$TempDIR/CKLprocessing"
 starttime=$(date)
 

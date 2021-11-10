@@ -5,10 +5,10 @@
 #
 
 #STIG Identification
-GrpID="V-237635"
-GrpTitle="SRG-OS-000373-GPOS-00156"
-RuleID="SV-237635r792836_rule"
-STIGID="RHEL-07-010343"
+GrpID="V-250314"
+GrpTitle="SRG-OS-000324-GPOS-00125"
+RuleID="SV-250314r792849_rule"
+STIGID="RHEL-07-020023"
 Results="./Results/$GrpID"
 
 #Remove File if already there
@@ -21,10 +21,10 @@ echo $RuleID >> $Results
 echo $STIGID >> $Results
 ##END of Automatic Items##
 
-###Check###
+#Check
 
-if grep 'timestamp_timeout=0' /etc/sudoers /etc/sudoers.d/* | grep "Defaults" | grep -v "^#" >> $Results; then  
- echo "Pass" >> $Results
-else
+if ! grep sysadm_r /etc/sudoers /etc/sudoers.d/* 2>>/dev/null >> $Results; then
  echo "Fail" >> $Results
+else
+ echo "Pass" >> $Results
 fi

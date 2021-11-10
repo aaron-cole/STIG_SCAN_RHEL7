@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#If the system does not require valid authentication before it boots into single-user or maintenance mode, anyone who invokes single-user or maintenance mode is granted privileged access to all files on the system. GRUB 2 is the default boot loader for RHEL 7 and is designed to require a password to boot into single-user mode or make modifications to the boot menu.
+#
 
 #STIG Identification
 GrpID="V-244557"
 GrpTitle="SRG-OS-000080-GPOS-00048"
-RuleID="SV-244557r744063_rule"
+RuleID="SV-244557r792838_rule"
 STIGID="RHEL-07-010483"
 Results="./Results/$GrpID"
 
@@ -31,8 +31,11 @@ elif [ "$(rpm -qi redhat-release-server | grep "^Version" | awk '{print $3}' | c
  echo "NA" >> $Results
 elif [ -e /boot/grub2/user.cfg ] && [ "$(grep 'set superusers=' /boot/grub2/grub.cfg)" ]; then
  grep 'set superusers=' /boot/grub2/grub.cfg >> $Results
- echo "superusers set as required" >> $Results
- echo "Pass" >> $Results
+ if grep 'set superusers=' /boot/grub2/grub.cfg | egrep -v "root|unlock" >> /dev/null; then
+  echo "Pass" >> $Results
+ else
+  echo "Fail" >> $Results
+ fi
 else
  echo "superusers is not set" >> $Results 
  echo "Fail" >> $Results
